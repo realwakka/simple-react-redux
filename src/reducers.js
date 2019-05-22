@@ -14,8 +14,6 @@ function toggle(state = initialState, action) {
     }
 }
 
-
-
 const toggleApp = combineReducers({
     toggle
 });

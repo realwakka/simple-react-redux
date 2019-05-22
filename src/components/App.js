@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TOGGLE, toggle } from '../actions';
@@ -8,12 +8,11 @@ import Toggle from './Toggle';
 class App extends Component {
 	render() {
 
-		const { dispatch, val } = this.props;
+		const { val } = this.props;
 		return (
 			<div>
 				<Toggle
-					onToggle={
-						val => dispatch(toggle(val))
+					onToggle={this.props.handleToggle
 					}
 					val={val} />
 			</div>
@@ -25,7 +24,7 @@ App.propTypes = {
 	val: PropTypes.bool.isRequired
 };
 
-function select(state) {
+function mapStateProps(state) {
 	return {
 		val: state.toggle.val
 	};
@@ -33,8 +32,8 @@ function select(state) {
 
 const mapDispatchProps = (dispatch) => {
 	return {
-		handleToggle: (value) => { dispatch(actions.toggle(value)) }
+		handleToggle: (value) => { dispatch(toggle(value)) }
 	}
 };
 
-export default connect(select)(App);
+export default connect(mapStateProps, mapDispatchProps)(App);

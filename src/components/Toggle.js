@@ -1,28 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
-function get_text(val) {
-	if (val == true)
-		return 'TRUE';
-	else
-		return 'FALSE';
 
-}
 
-const Toggle = ({ val, onToggle }) => (
+const Toggle = ({ text, onToggleClick }) => (
 	<div>
-		<h1 onClick={(e) => this.props.onToggle()}>
+		<h1 onClick={() => onToggleClick()}>
 			{
-				get_text(val)
+				text
 			}
 		</h1>
 	</div>
-)
+);
 
 
 Toggle.propTypes = {
-	val: PropTypes.bool.isRequired,
-	onToggle: PropTypes.func.isRequired
+	text: PropTypes.string.isRequired,
+	onToggleClick: PropTypes.func.isRequired
 };
 
-export default Toggle
+export default Toggle;

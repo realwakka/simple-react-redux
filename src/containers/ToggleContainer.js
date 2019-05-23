@@ -1,18 +1,32 @@
 import { connect } from 'react-redux';
-import { toggle } from '../actions';
-import { Toggle } from '../components/Toggle';
+import { toggle_action } from '../actions';
+import Toggle from '../components/Toggle';
 
-const mapStateToProps = (state, props) => {
+
+function getText(val) {
+    console.log(`gettext`)
+    console.log(val)
+	if (val == true)
+		return 'TRUE';
+	else
+		return 'FALSE';
+}
+
+const mapStateToProps = state => {
+    console.log('mapStateToProps')
+    console.log(state)
     return {
-        val: !state.val
+        text: getText(state.value)
     }
 };
 
-const mapDispatchToProps = (dispatch, props) => {
+const mapDispatchToProps = dispatch => {
+    console.log('mapDispatchToProps')
+
     return {
-        onToggle:
+        onToggleClick:
             (value) => {
-                dispatch(toggle(value))
+                dispatch(toggle_action(value))
 
             }
     }

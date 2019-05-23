@@ -1,21 +1,32 @@
 import { combineReducers } from 'redux';
-import { TOGGLE } from './actions'
+import { TOGGLE, INCREMENT } from './actions';
 
-const initialState = {
-    val: true
-};
-
-function toggle(state = initialState, action) {
+function value(state = false, action) {
+    console.log('toggle in reducer')
+    console.log(state)
     switch (action.type) {
         case TOGGLE:
-            return { ...state, val: !state.val };
+            return !state;
         default:
             return state;
     }
 }
 
+function count(state = 0, action) {
+    console.log('count')
+    console.log(action)
+    switch (action.type) {
+        case INCREMENT:
+            return (state + 1)
+        default:
+            return state
+
+    }
+}
+
 const toggleApp = combineReducers({
-    toggle
+    value,
+    count
 });
 
 export default toggleApp;
